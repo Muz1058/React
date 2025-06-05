@@ -6,17 +6,24 @@ import './App.css'
 
 
 function App() {
-  let [counter,setCounter]=useState(0);
+  let [counter,setCounter]=useState(1);
  function addCount(){
+  if(counter<20){
+   
+setCounter(counter+1)
+ console.log(counter);
   
-  setCounter(counter+1)
-  console.log(counter);
+  }
+  
+  
   
 }
  function reduceCount(){
-  
-  setCounter(counter-1)
-  console.log(counter);
+  if(counter>0){
+     console.log(counter);
+ setCounter(counter-1)
+ 
+  } 
   
 }
 
