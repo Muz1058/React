@@ -33,8 +33,14 @@ const ReactElement= React.createElement(
 
 )
 
+// createRoot(document.getElementById("root")).render(
+
+//     ReactElement
+
+// );
 createRoot(document.getElementById("root")).render(
 
-    ReactElement
+    App()
 
 );
+
