@@ -13,9 +13,6 @@ function App() {
      <Card userName="Tom" btnText="Click me"/>
      <Card userName="Delba" btnText="Visit me"/>
      
-
-
-     
     </>
   )
 }
