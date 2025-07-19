@@ -4,7 +4,7 @@ import useCurrencyInfo from './hooks/useCurrencyInfo'
 import './App.css'
 
 function App() {
-  const [amount, setAmount] = useState(1);
+  const [amount, setAmount] = useState(0);
   const [from, setFrom] = useState("usd");
   const [to, setTo] = useState("pkr");
   const [convertedAmount, setConvertedAmount] = useState(0);
@@ -21,7 +21,7 @@ function App() {
 
   const convert = () => {
     if (currencyInfo && currencyInfo[to]) {
-      setConvertedAmount(amount * currencyInfo[to]);
+      setConvertedAmount((amount * currencyInfo[to]).toFixed(4));
     }
   };
 
@@ -43,11 +43,16 @@ function App() {
             <div className=" mb-1">
               <InputBox
                 label="From"
-                amount={Math.floor(amount)}
+                amount={amount}
                 currencyOptions={options}
-                onCurrencyChange={(currency) => setFrom(currency)}
+                onCurrencyChange={(currency) =>{ setFrom(currency)
+                  setAmount(0)
+                  setConvertedAmount(0)
+                }}
                 selectCurrency={from}
-                onAmountChange={(val) => setAmount(val)}
+                onAmountChange={(val) => {setAmount(val)
+                  setConvertedAmount(0)
+                }}
               />
             </div>
 
@@ -67,8 +72,7 @@ function App() {
                 amount={convertedAmount}
                 currencyOptions={options}
                 onCurrencyChange={(currency) => setTo(currency)}
-                selectCurrency={to}
-                
+                selectCurrency={to}               
               />
             </div>
 
