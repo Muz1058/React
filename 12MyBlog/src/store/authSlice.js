@@ -11,12 +11,14 @@ const authSlice=createSlice({
     initialState,
     reducers:{
         login:(state,action)=>{
-            state.status=true;
-            state.userData=action.payload.userData;
+            state.status=true
+            state.userData=action.payload.userData
+             localStorage.setItem("userData", JSON.stringify(action.payload.userData))
         },
         logout:(state,action)=>{
-            state.status=false;
-            state.userData=null;
+            state.status=false
+            state.userData=null
+             localStorage.removeItem("userData")
         }
     }
 })
