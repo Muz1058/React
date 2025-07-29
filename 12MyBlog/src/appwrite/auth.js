@@ -19,7 +19,7 @@ export class AuthService{
             const userAccount=await this.account.create(ID.unique(),email,password,name)
             if (userAccount) {
                 //Call Another Method
-                return this
+                 return this.login({email, password});
             } else {
                 return userAccount;
             }

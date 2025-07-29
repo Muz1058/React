@@ -10,17 +10,34 @@ function App() {
   const [loading, setLoading] = useState(true)
   const dispatch = useDispatch()
 
+  // useEffect(() => {
+  //   authService.getCurrentUser()
+  //   .then((userData) => {
+  //     if (userData) {
+  //       dispatch(login({userData}))
+  //     } else {
+  //       dispatch(logout())
+  //     }
+  //   })
+  //   .finally(() => setLoading(false))
+  // }, [])
   useEffect(() => {
+    console.log("App.jsx: Checking current user...");
     authService.getCurrentUser()
     .then((userData) => {
-      if (userData) {
-        dispatch(login({userData}))
-      } else {
-        dispatch(logout())
-      }
+        console.log("App.jsx: Got user data:", userData);
+        if (userData) {
+            dispatch(login({userData}))
+        } else {
+            console.log("App.jsx: No user data, logging out");
+            dispatch(logout())
+        }
+    })
+    .catch((error) => {
+        console.error("App.jsx: Error getting user:", error);
     })
     .finally(() => setLoading(false))
-  }, [])
+}, [])
   
   return !loading ? (
     <div className='min-h-screen flex flex-wrap content-between bg-gray-400'>
